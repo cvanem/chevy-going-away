@@ -159,7 +159,7 @@
     .btn.alt:hover { box-shadow: 0 7px 0 var(--ball-dark); }
     .btn.ghost { background: transparent; color: var(--cream); border: 2px solid rgba(255,247,232,.5); box-shadow: none; }
 
-    .scroll-hint { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); font-size: .85rem; opacity: .7; animation: nudge 1.8s ease-in-out infinite; }
+    .scroll-hint { white-space: nowrap; position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); font-size: .85rem; opacity: .7; animation: nudge 1.8s ease-in-out infinite; }
     @keyframes nudge { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 6px); } }
 
     /* ---------- SECTIONS ---------- */
@@ -207,11 +207,15 @@
     .disco {
       width: 90px; height: 90px; margin: 0 auto 18px; border-radius: 50%;
       background:
-        conic-gradient(from 0deg, #fff 0 10%, #ccc 10% 20%, #fff 20% 30%, #999 30% 40%, #eee 40% 50%, #bbb 50% 60%, #fff 60% 70%, #aaa 70% 80%, #ddd 80% 90%, #fff 90%);
-      box-shadow: 0 0 40px rgba(255,255,255,.35), 0 0 90px rgba(215,245,58,.25);
-      animation: spin 4s linear infinite;
+        radial-gradient(circle at 32% 28%, rgba(255,255,255,.95) 0 6%, transparent 22%),
+        repeating-linear-gradient(0deg, rgba(40,40,60,.55) 0 2px, transparent 2px 12px),
+        repeating-linear-gradient(90deg, rgba(40,40,60,.55) 0 2px, transparent 2px 12px),
+        conic-gradient(#f5f5f5, #9aa0b5, #ffffff, #c9cde0, #7d8299, #eef0ff, #b5b9cc, #f5f5f5);
+      box-shadow: inset -10px -12px 20px rgba(0,0,0,.45), 0 0 40px rgba(255,255,255,.35), 0 0 90px rgba(215,245,58,.25);
+      animation: sparkle 2.4s ease-in-out infinite;
     }
-    .dance-floor { display: flex; justify-content: center; gap: 18px; font-size: 2.6rem; margin: 18px 0 8px; }
+    @keyframes sparkle { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.25) hue-rotate(20deg); } }
+    .dance-floor { display: flex; justify-content: center; gap: clamp(8px, 3.5vw, 18px); font-size: clamp(1.9rem, 9vw, 2.6rem); margin: 18px 0 8px; }
     .dance-floor span { display: inline-block; animation: dance .7s ease-in-out infinite alternate; }
     .dance-floor span:nth-child(2) { animation-delay: .15s; }
     .dance-floor span:nth-child(3) { animation-delay: .3s; }
@@ -233,6 +237,9 @@
     .scoreboard .team { font-size: clamp(.9rem, 3vw, 1.15rem); color: var(--cream); }
     .scoreboard .pts { font-size: clamp(1.6rem, 6vw, 2.4rem); color: var(--gold); text-shadow: 0 0 12px rgba(245,184,46,.6); }
     .scoreboard .pts.lime { color: var(--ball); text-shadow: 0 0 12px rgba(215,245,58,.6); }
+    .scoreboard .pts { text-align: right; white-space: nowrap; padding-left: 12px; }
+    .scoreboard .pts.words { font-size: clamp(1rem, 4.2vw, 1.6rem); }
+    .scoreboard .pts.inf { font-family: "Nunito", sans-serif; font-weight: 800; font-size: clamp(2.2rem, 8vw, 3rem); line-height: 1; }
     .scoreboard .cap { font-family: "Nunito", sans-serif; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,247,232,.6); text-align: center; margin-bottom: 6px; }
 
     .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
@@ -240,10 +247,10 @@
       background: var(--cream); color: var(--ink); padding: 22px 20px; border-radius: 4px;
       box-shadow: 0 10px 20px rgba(0,0,0,.3); font-size: 1.02rem;
     }
-    .note:nth-child(1) { transform: rotate(-2deg); background: #fff3b0; }
-    .note:nth-child(2) { transform: rotate(1.5deg); background: #e3f7b4; }
-    .note:nth-child(3) { transform: rotate(-1deg); background: #ffd9c2; }
-    .note:nth-child(4) { transform: rotate(2deg); background: #d9ecff; }
+    .note:nth-child(1) { rotate: -2deg; background: #fff3b0; }
+    .note:nth-child(2) { rotate: 1.5deg; background: #e3f7b4; }
+    .note:nth-child(3) { rotate: -1deg; background: #ffd9c2; }
+    .note:nth-child(4) { rotate: 2deg; background: #d9ecff; }
     .note b { font-family: "Pacifico", cursive; font-weight: 400; font-size: 1.25rem; color: var(--maple); display: block; margin-bottom: 4px; }
 
     /* rsvp */
@@ -259,6 +266,16 @@
 
     footer { text-align: center; padding: 36px 16px 50px; background: #3b2416; border-top: 6px solid var(--maple); font-size: .92rem; }
     footer .script { font-size: 1.5rem; }
+
+    @media (max-width: 480px) {
+      .countdown { gap: 8px; flex-wrap: nowrap; }
+      .tick { min-width: 0; flex: 1 1 0; max-width: 84px; padding: 10px 4px 6px; }
+      .tick b { font-size: 1.55rem; }
+      .tick span { font-size: .6rem; letter-spacing: .1em; }
+      .card { padding: 22px 20px 18px; }
+      .card h3 { font-size: 1.15rem; }
+      .rsvp .big { padding: 0 6px; }
+    }
 
     /* reveal on scroll */
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
@@ -407,9 +424,9 @@
         <div class="scoreboard reveal">
           <div class="cap">Summer &amp; Fall Season</div>
           <div class="row"><span class="team">Good times</span><span class="pts lime">11</span></div>
-          <div class="row"><span class="team">Laughs on the court</span><span class="pts">∞</span></div>
+          <div class="row"><span class="team">Laughs on the court</span><span class="pts inf">∞</span></div>
           <div class="row"><span class="team">Happy-feet dance breaks</span><span class="pts lime">✓</span></div>
-          <div class="row"><span class="team">Times we'll miss him</span><span class="pts">Every game</span></div>
+          <div class="row"><span class="team">Times we'll miss him</span><span class="pts words">Every game</span></div>
         </div>
 
         <div class="notes">
