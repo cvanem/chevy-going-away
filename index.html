@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Farewell, Chevy! · Going Away Party</title>
+  <meta name="description" content="One last rally for Chevy (Tim Ford). Saturday, November 7 at 3 PM in Deadwood, SD." />
+  <meta property="og:title" content="Farewell, Chevy! 🏓 Going Away Party" />
+  <meta property="og:description" content="Saturday, November 7 · 3 PM · Deadwood, SD. Gumbo provided, BYOB, happy feet required." />
+  <meta name="theme-color" content="#1f3b2d" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏓</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Pacifico&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pine: #1f3b2d;
+      --pine-deep: #142a1f;
+      --court: #2f6b4f;
+      --ball: #d7f53a;
+      --ball-dark: #b5d11f;
+      --ember: #f26b1d;
+      --maple: #c8401f;
+      --gold: #f5b82e;
+      --cream: #fff7e8;
+      --ink: #1d1a16;
+      --line: rgba(255, 255, 255, 0.85);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Nunito", system-ui, sans-serif;
+      color: var(--cream);
+      background: var(--pine-deep);
+      overflow-x: hidden;
+      line-height: 1.55;
+    }
+
+    /* falling leaves layer */
+    #leaves { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .leaf {
+      position: absolute; top: -40px; font-size: 22px; opacity: .85;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      25%  { transform: translate(40px, 25vh) rotate(90deg); }
+      50%  { transform: translate(-30px, 50vh) rotate(180deg); }
+      75%  { transform: translate(35px, 75vh) rotate(270deg); }
+      100% { transform: translate(-10px, 110vh) rotate(360deg); }
+    }
+
+    main { position: relative; z-index: 2; }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: grid; place-items: center; text-align: center;
+      padding: 48px 16px 80px;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 50% 120%, rgba(242,107,29,.45), transparent 60%),
+        linear-gradient(180deg, #13261c 0%, var(--pine) 55%, #2b4a2f 100%);
+      overflow: hidden;
+    }
+    /* court lines */
+    .hero::before {
+      content: ""; position: absolute; inset: 6% 8%;
+      border: 3px solid rgba(255,255,255,.12); border-radius: 6px;
+      background:
+        linear-gradient(90deg, transparent calc(50% - 1.5px), rgba(255,255,255,.12) calc(50% - 1.5px), rgba(255,255,255,.12) calc(50% + 1.5px), transparent calc(50% + 1.5px)),
+        linear-gradient(0deg, transparent 32%, rgba(255,255,255,.08) 32%, rgba(255,255,255,.08) calc(32% + 3px), transparent calc(32% + 3px), transparent 68%, rgba(255,255,255,.08) 68%, rgba(255,255,255,.08) calc(68% + 3px), transparent calc(68% + 3px));
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; max-width: 880px; }
+    .kicker {
+      display: inline-block; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+      font-size: .8rem; color: var(--pine-deep); background: var(--ball);
+      padding: 6px 14px; border-radius: 999px; box-shadow: 0 4px 0 var(--ball-dark);
+    }
+    h1 {
+      font-family: "Bungee", Impact, sans-serif; font-weight: 400;
+      font-size: clamp(2.8rem, 11vw, 7rem); line-height: .95; margin: 22px 0 6px;
+      color: var(--cream);
+      text-shadow: 0 6px 0 var(--maple), 0 12px 24px rgba(0,0,0,.45);
+    }
+    h1 .chevy { color: var(--ball); display: inline-block; animation: wiggle 2.8s ease-in-out infinite; }
+    @keyframes wiggle { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) scale(1.04); } }
+    .script { font-family: "Pacifico", cursive; font-size: clamp(1.4rem, 4.5vw, 2.3rem); color: var(--gold); margin: 6px 0 4px; }
+    .sub { font-size: clamp(1rem, 2.6vw, 1.25rem); max-width: 620px; margin: 10px auto 0; opacity: .92; }
+
+    /* bouncing pickleball */
+    .ball-stage { height: 150px; position: relative; margin: 18px auto 0; width: 140px; }
+    .pickleball {
+      width: 78px; height: 78px; border-radius: 50%;
+      position: absolute; left: 31px; bottom: 14px;
+      background: radial-gradient(circle at 32% 30%, #f4ff9a, var(--ball) 45%, var(--ball-dark) 100%);
+      box-shadow: inset -6px -8px 14px rgba(0,0,0,.18);
+      animation: bounce 1.1s cubic-bezier(.3,0,.7,1) infinite alternate;
+    }
+    .pickleball::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(60,80,0,.55) 0 5px, transparent 6px),
+        radial-gradient(circle at 62% 24%, rgba(60,80,0,.55) 0 5px, transparent 6px),
+        radial-gradient(circle at 50% 52%, rgba(60,80,0,.55) 0 5px, transparent 6px),
+        radial-gradient(circle at 24% 64%, rgba(60,80,0,.55) 0 5px, transparent 6px),
+        radial-gradient(circle at 76% 56%, rgba(60,80,0,.55) 0 5px, transparent 6px),
+        radial-gradient(circle at 52% 82%, rgba(60,80,0,.55) 0 5px, transparent 6px);
+      animation: spin 2.2s linear infinite;
+    }
+    .shadow {
+      position: absolute; bottom: 4px; left: 40px; width: 60px; height: 12px; border-radius: 50%;
+      background: rgba(0,0,0,.35); animation: shadow 1.1s cubic-bezier(.3,0,.7,1) infinite alternate;
+    }
+    @keyframes bounce { from { transform: translateY(-70px); } to { transform: translateY(0) scale(1.06, .94); } }
+    @keyframes shadow { from { transform: scale(.55); opacity: .35; } to { transform: scale(1); opacity: .6; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* countdown */
+    .countdown { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 8px 0 26px; }
+    .tick {
+      min-width: 86px; padding: 12px 10px 8px; border-radius: 14px;
+      background: rgba(255,247,232,.08); border: 2px solid rgba(255,247,232,.18);
+      backdrop-filter: blur(4px);
+    }
+    .tick b { display: block; font-family: "Bungee", Impact, sans-serif; font-weight: 400; font-size: 2rem; color: var(--ball); line-height: 1.1; }
+    .tick span { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
+    .countdown-done { font-family: "Pacifico", cursive; font-size: 1.6rem; color: var(--gold); }
+
+    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      font: inherit; font-weight: 800; text-decoration: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 22px; border-radius: 999px; border: 0;
+      background: var(--ember); color: #fff; box-shadow: 0 5px 0 var(--maple);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--maple); }
+    .btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--maple); }
+    .btn.alt { background: var(--ball); color: var(--pine-deep); box-shadow: 0 5px 0 var(--ball-dark); }
+    .btn.alt:hover { box-shadow: 0 7px 0 var(--ball-dark); }
+    .btn.ghost { background: transparent; color: var(--cream); border: 2px solid rgba(255,247,232,.5); box-shadow: none; }
+
+    .scroll-hint { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); font-size: .85rem; opacity: .7; animation: nudge 1.8s ease-in-out infinite; }
+    @keyframes nudge { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 6px); } }
+
+    /* ---------- SECTIONS ---------- */
+    section { padding: 80px 16px; }
+    .wrap { max-width: 1040px; margin: 0 auto; }
+    .section-title {
+      font-family: "Bungee", Impact, sans-serif; font-weight: 400; text-align: center;
+      font-size: clamp(1.8rem, 5.5vw, 3rem); margin: 0 0 8px; line-height: 1.05;
+    }
+    .section-lede { text-align: center; max-width: 620px; margin: 0 auto 40px; opacity: .9; }
+
+    .details { background: var(--cream); color: var(--ink); }
+    .details .section-title { color: var(--pine); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card {
+      background: #fff; border-radius: 20px; padding: 26px 24px 22px;
+      border: 3px solid var(--pine); box-shadow: 8px 8px 0 var(--pine);
+      position: relative; transition: transform .2s ease;
+    }
+    .card:hover { transform: translate(-3px, -3px) rotate(-.4deg); box-shadow: 11px 11px 0 var(--pine); }
+    .card .icon { font-size: 2.2rem; line-height: 1; }
+    .card .label {
+      font-size: .74rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--maple); margin: 12px 0 2px;
+    }
+    .card h3 { font-family: "Bungee", Impact, sans-serif; font-weight: 400; font-size: 1.35rem; margin: 0 0 8px; color: var(--pine); line-height: 1.2; }
+    .card p { margin: 0 0 6px; }
+    .card a.inline { color: var(--court); font-weight: 800; }
+    .card.highlight { background: var(--ball); }
+    .card.ember { background: #ffe4cf; }
+
+    .directions {
+      margin-top: 28px; background: var(--pine); color: var(--cream); border-radius: 22px;
+      padding: 28px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center;
+    }
+    .steps { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-weight: 800; }
+    .step { background: rgba(255,247,232,.1); border: 2px dashed rgba(255,247,232,.35); border-radius: 12px; padding: 10px 14px; }
+    .step.final { background: var(--court); border: 2px solid var(--ball); }
+    .arrow { color: var(--ball); font-size: 1.3rem; }
+    .house { width: 120px; height: auto; }
+    @media (max-width: 640px) { .directions { grid-template-columns: 1fr; text-align: center; } .house { margin: 0 auto; } .steps { justify-content: center; } }
+
+    /* happy feet */
+    .feet {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(215,245,58,.18), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(242,107,29,.25), transparent 45%),
+        #2a1a3a;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .feet .section-title { color: var(--ball); }
+    .disco {
+      width: 90px; height: 90px; margin: 0 auto 18px; border-radius: 50%;
+      background:
+        conic-gradient(from 0deg, #fff 0 10%, #ccc 10% 20%, #fff 20% 30%, #999 30% 40%, #eee 40% 50%, #bbb 50% 60%, #fff 60% 70%, #aaa 70% 80%, #ddd 80% 90%, #fff 90%);
+      box-shadow: 0 0 40px rgba(255,255,255,.35), 0 0 90px rgba(215,245,58,.25);
+      animation: spin 4s linear infinite;
+    }
+    .dance-floor { display: flex; justify-content: center; gap: 18px; font-size: 2.6rem; margin: 18px 0 8px; }
+    .dance-floor span { display: inline-block; animation: dance .7s ease-in-out infinite alternate; }
+    .dance-floor span:nth-child(2) { animation-delay: .15s; }
+    .dance-floor span:nth-child(3) { animation-delay: .3s; }
+    .dance-floor span:nth-child(4) { animation-delay: .45s; }
+    .dance-floor span:nth-child(5) { animation-delay: .6s; }
+    @keyframes dance { from { transform: translateY(0) rotate(-12deg); } to { transform: translateY(-14px) rotate(12deg); } }
+    .feet p { max-width: 640px; margin: 0 auto 14px; font-size: 1.1rem; }
+    .feet .script { margin-top: 10px; }
+
+    /* tribute / scoreboard */
+    .tribute { background: linear-gradient(180deg, var(--pine) 0%, var(--pine-deep) 100%); }
+    .scoreboard {
+      max-width: 620px; margin: 0 auto 40px; background: #0b130e; border-radius: 18px;
+      border: 4px solid #3b3b3b; padding: 20px 22px; font-family: "Bungee", Impact, sans-serif;
+      box-shadow: inset 0 0 30px rgba(0,0,0,.7), 0 18px 40px rgba(0,0,0,.4);
+    }
+    .scoreboard .row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,.12); }
+    .scoreboard .row:last-child { border-bottom: 0; }
+    .scoreboard .team { font-size: clamp(.9rem, 3vw, 1.15rem); color: var(--cream); }
+    .scoreboard .pts { font-size: clamp(1.6rem, 6vw, 2.4rem); color: var(--gold); text-shadow: 0 0 12px rgba(245,184,46,.6); }
+    .scoreboard .pts.lime { color: var(--ball); text-shadow: 0 0 12px rgba(215,245,58,.6); }
+    .scoreboard .cap { font-family: "Nunito", sans-serif; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,247,232,.6); text-align: center; margin-bottom: 6px; }
+
+    .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .note {
+      background: var(--cream); color: var(--ink); padding: 22px 20px; border-radius: 4px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.3); font-size: 1.02rem;
+    }
+    .note:nth-child(1) { transform: rotate(-2deg); background: #fff3b0; }
+    .note:nth-child(2) { transform: rotate(1.5deg); background: #e3f7b4; }
+    .note:nth-child(3) { transform: rotate(-1deg); background: #ffd9c2; }
+    .note:nth-child(4) { transform: rotate(2deg); background: #d9ecff; }
+    .note b { font-family: "Pacifico", cursive; font-weight: 400; font-size: 1.25rem; color: var(--maple); display: block; margin-bottom: 4px; }
+
+    /* rsvp */
+    .rsvp { background: var(--ember); text-align: center; color: #fff; position: relative; overflow: hidden; }
+    .rsvp::after {
+      content: "🍂 🏓 🍁 🏓 🍂 🏓 🍁 🏓 🍂 🏓 🍁 🏓 🍂"; position: absolute; left: 0; right: 0; bottom: 14px;
+      font-size: 1.3rem; opacity: .4; white-space: nowrap; letter-spacing: .4em;
+    }
+    .rsvp .section-title { color: #fff; text-shadow: 0 4px 0 var(--maple); }
+    .rsvp p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 26px; }
+    .rsvp .big { font-family: "Bungee", Impact, sans-serif; font-size: clamp(1.2rem, 4vw, 1.8rem); background: var(--pine-deep); display: inline-block; padding: 14px 24px; border-radius: 16px; margin-bottom: 26px; }
+    .rsvp .btn { background: var(--pine-deep); box-shadow: 0 5px 0 #000; }
+
+    footer { text-align: center; padding: 36px 16px 50px; background: var(--pine-deep); font-size: .92rem; opacity: .85; }
+    footer .script { font-size: 1.5rem; }
+
+    /* reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* confetti */
+    .confetti { position: fixed; pointer-events: none; z-index: 50; font-size: 20px; will-change: transform, opacity; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      #leaves { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="leaves" aria-hidden="true"></div>
+
+  <main>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-inner">
+        <span class="kicker">🏓 One last rally 🏓</span>
+        <h1>Farewell,<br /><span class="chevy">Chevy!</span></h1>
+        <div class="script">Tim Ford's Going Away Party</div>
+        <p class="sub">From sunny summer games to crisp fall dinks, Chevy has been a great part of our crew. Now he's off to a new job, so let's send him off right!</p>
+
+        <div class="ball-stage" aria-hidden="true">
+          <div class="shadow"></div>
+          <div class="pickleball"></div>
+        </div>
+
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div class="tick"><b id="cd-days">--</b><span>Days</span></div>
+          <div class="tick"><b id="cd-hours">--</b><span>Hours</span></div>
+          <div class="tick"><b id="cd-mins">--</b><span>Minutes</span></div>
+          <div class="tick"><b id="cd-secs">--</b><span>Seconds</span></div>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn" href="#details">📋 Party Details</a>
+          <button class="btn alt" id="cheer" type="button">🎉 Cheer for Chevy</button>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">▼ scroll for the game plan ▼</div>
+    </header>
+
+    <!-- DETAILS -->
+    <section class="details" id="details">
+      <div class="wrap">
+        <h2 class="section-title reveal">The Game Plan</h2>
+        <p class="section-lede reveal">Everything you need to know before you step on the court.</p>
+
+        <div class="grid">
+          <div class="card highlight reveal">
+            <div class="icon">📅</div>
+            <div class="label">When</div>
+            <h3>Saturday, November 7th</h3>
+            <p><strong>3:00 PM</strong> is first serve.</p>
+          </div>
+
+          <div class="card reveal">
+            <div class="icon">📍</div>
+            <div class="label">Where</div>
+            <h3>65 Centennial<br />Deadwood, SD</h3>
+            <p>At <strong>"Rosie"</strong>, hosted by <strong>Chris &amp; Victoria</strong>.</p>
+            <p><a class="inline" href="https://www.google.com/maps/search/?api=1&query=65+Centennial+Deadwood+SD+57732" target="_blank" rel="noopener">Open in Maps →</a></p>
+          </div>
+
+          <div class="card ember reveal">
+            <div class="icon">🔥</div>
+            <div class="label">The Setting</div>
+            <h3>Inside &amp; by the Fire Pit</h3>
+            <p>The party will be inside and outside by the fire pit, weather permitting. It's November in the Black Hills, so a cozy layer is a good idea.</p>
+          </div>
+
+          <div class="card reveal">
+            <div class="icon">🍲</div>
+            <div class="label">The Kitchen Is Open</div>
+            <h3>Gumbo Provided</h3>
+            <p>This is the one kitchen you're allowed in. Feel free to bring a <strong>dish, snack, or dessert</strong> to share.</p>
+          </div>
+
+          <div class="card highlight reveal">
+            <div class="icon">🍻</div>
+            <div class="label">Drinks</div>
+            <h3>BYOB</h3>
+            <p><strong>Bring Your Own Beverages.</strong> Stay hydrated, champ.</p>
+          </div>
+
+          <div class="card ember reveal">
+            <div class="icon">🕺</div>
+            <div class="label">Dress Code</div>
+            <h3>Happy Feet Required</h3>
+            <p>Comfy shoes, warm layers, and a willingness to bust a move when Chevy starts dancing.</p>
+          </div>
+        </div>
+
+        <div class="directions reveal">
+          <svg class="house" viewBox="0 0 120 100" role="img" aria-label="Green metal-roofed house">
+            <rect x="18" y="46" width="84" height="50" rx="3" fill="#fff7e8" />
+            <polygon points="8,50 60,10 112,50" fill="#3f8f5a" />
+            <g stroke="#2f6b4f" stroke-width="2">
+              <line x1="24" y1="44" x2="60" y2="16" /><line x1="36" y1="46" x2="60" y2="27" />
+              <line x1="96" y1="44" x2="60" y2="16" /><line x1="84" y1="46" x2="60" y2="27" />
+            </g>
+            <rect x="50" y="64" width="20" height="32" rx="2" fill="#c8401f" />
+            <rect x="26" y="58" width="16" height="14" fill="#f5b82e" />
+            <rect x="78" y="58" width="16" height="14" fill="#f5b82e" />
+            <text x="60" y="56" text-anchor="middle" font-family="Pacifico, cursive" font-size="9" fill="#1f3b2d">Rosie</text>
+          </svg>
+          <div>
+            <div class="label" style="color:var(--ball);font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.74rem;margin-bottom:10px;">How to find us</div>
+            <div class="steps">
+              <span class="step">🚗 Park on the street</span>
+              <span class="arrow">➜</span>
+              <span class="step">🪜 Walk down the wooden stairs</span>
+              <span class="arrow">➜</span>
+              <span class="step final">🏡 Green metal-roofed house: <em>Rosie</em></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row" style="margin-top:32px;">
+          <a class="btn" id="gcal" target="_blank" rel="noopener" href="#">📆 Add to Google Calendar</a>
+          <button class="btn alt" id="ics" type="button">🗓️ Add to Apple / Outlook</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HAPPY FEET -->
+    <section class="feet">
+      <div class="wrap">
+        <div class="disco reveal" aria-hidden="true"></div>
+        <h2 class="section-title reveal">Happy Feet Forever</h2>
+        <div class="dance-floor reveal" aria-hidden="true"><span>🕺</span><span>👟</span><span>🏓</span><span>👟</span><span>💃</span></div>
+        <p class="reveal">On the court, Chevy's got the footwork. Off the court, he's got the <strong>dance moves</strong>. Rumor has it those happy feet never really stop moving.</p>
+        <p class="reveal">So come ready to celebrate. Swap a few stories by the fire, and if the music hits, you know who'll be leading the dance floor.</p>
+        <div class="script reveal">Dink, dance, repeat!</div>
+      </div>
+    </section>
+
+    <!-- TRIBUTE -->
+    <section class="tribute">
+      <div class="wrap">
+        <h2 class="section-title reveal" style="color:var(--gold);">The Final Score</h2>
+        <p class="section-lede reveal">Our official tally of Chevy's time on the courts with us.</p>
+
+        <div class="scoreboard reveal">
+          <div class="cap">Summer &amp; Fall Season</div>
+          <div class="row"><span class="team">Good times</span><span class="pts lime">11</span></div>
+          <div class="row"><span class="team">Laughs on the court</span><span class="pts">∞</span></div>
+          <div class="row"><span class="team">Happy-feet dance breaks</span><span class="pts lime">✓</span></div>
+          <div class="row"><span class="team">Times we'll miss him</span><span class="pts">Every game</span></div>
+        </div>
+
+        <div class="notes">
+          <div class="note reveal"><b>Side out…</b>but never out of the crew. Once you've played with us, you're one of us.</div>
+          <div class="note reveal"><b>New court, new job</b>Wherever you land, may the courts be smooth and the competition friendly.</div>
+          <div class="note reveal"><b>Keep dinking</b>And keep dancing. Those happy feet were made for both.</div>
+          <div class="note reveal"><b>Come back soon</b>There will always be an open paddle and a spot in the rotation for you.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp" id="rsvp">
+      <div class="wrap">
+        <h2 class="section-title reveal">Are You In?</h2>
+        <p class="reveal">Let us know you're coming so we make enough gumbo!</p>
+        <div class="big reveal">RSVP via TeamReach or text</div>
+        <div class="btn-row reveal">
+          <button class="btn" id="cheer2" type="button">🎉 Send Chevy Some Love</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="script">Good luck, Chevy!</div>
+      <p>With love from your pickleball crew 🏓 · Hosted by Chris &amp; Victoria</p>
+    </footer>
+  </main>
+
+  <script>
+    // Party: Saturday Nov 7, 2026, 3:00 PM Mountain Standard Time (UTC-7)
+    const PARTY_START = new Date("2026-11-07T15:00:00-07:00");
+    const PARTY_END = new Date("2026-11-07T19:00:00-07:00");
+
+    // ---- countdown ----
+    const pad = n => String(n).padStart(2, "0");
+    function tick() {
+      const diff = PARTY_START - new Date();
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML =
+          '<div class="countdown-done">🎉 It\'s party time! 🎉</div>';
+        return clearInterval(timer);
+      }
+      const s = Math.floor(diff / 1000);
+      document.getElementById("cd-days").textContent = Math.floor(s / 86400);
+      document.getElementById("cd-hours").textContent = pad(Math.floor(s % 86400 / 3600));
+      document.getElementById("cd-mins").textContent = pad(Math.floor(s % 3600 / 60));
+      document.getElementById("cd-secs").textContent = pad(s % 60);
+    }
+    const timer = setInterval(tick, 1000);
+    tick();
+
+    // ---- falling leaves & pickleballs ----
+    const leafLayer = document.getElementById("leaves");
+    const leafChars = ["🍂", "🍁", "🍂", "🍁", "🏓"];
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function dropLeaf() {
+      const el = document.createElement("span");
+      el.className = "leaf";
+      el.textContent = leafChars[Math.floor(Math.random() * leafChars.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = 14 + Math.random() * 18 + "px";
+      el.style.animationDuration = 9 + Math.random() * 8 + "s";
+      leafLayer.appendChild(el);
+      el.addEventListener("animationend", () => el.remove());
+    }
+    if (!reduced) {
+      for (let i = 0; i < 6; i++) setTimeout(dropLeaf, i * 600);
+      setInterval(dropLeaf, 1400);
+    }
+
+    // ---- confetti burst ----
+    const bits = ["🎉", "🏓", "🕺", "🍁", "✨", "🎊", "💚", "👟"];
+    function burst(x, y) {
+      if (reduced) return;
+      for (let i = 0; i < 28; i++) {
+        const el = document.createElement("span");
+        el.className = "confetti";
+        el.textContent = bits[Math.floor(Math.random() * bits.length)];
+        el.style.left = x + "px";
+        el.style.top = y + "px";
+        document.body.appendChild(el);
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 90 + Math.random() * 180;
+        el.animate([
+          { transform: "translate(-50%,-50%) scale(.4)", opacity: 1 },
+          { transform: `translate(calc(-50% + ${Math.cos(angle) * dist}px), calc(-50% + ${Math.sin(angle) * dist + 120}px)) rotate(${Math.random() * 720 - 360}deg) scale(1.2)`, opacity: 0 }
+        ], { duration: 1200 + Math.random() * 700, easing: "cubic-bezier(.2,.7,.3,1)" }).onfinish = () => el.remove();
+      }
+    }
+    ["cheer", "cheer2"].forEach(id => {
+      document.getElementById(id).addEventListener("click", e => {
+        const r = e.currentTarget.getBoundingClientRect();
+        burst(r.left + r.width / 2, r.top + r.height / 2);
+      });
+    });
+    setTimeout(() => burst(window.innerWidth / 2, window.innerHeight * 0.35), 700);
+
+    // ---- reveal on scroll ----
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // ---- calendar ----
+    const TITLE = "Chevy's Going Away Party 🏓";
+    const LOCATION = "65 Centennial, Deadwood, SD 57732";
+    const DESC = "One last rally for Chevy (Tim Ford)! Park on the street and walk down the wooden stairs to the green metal-roofed house: Rosie. Inside & outside by the fire pit, weather permitting. Gumbo provided. Bring a dish, snack, or dessert. BYOB. RSVP via TeamReach or text.";
+    const stamp = d => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+
+    document.getElementById("gcal").href =
+      "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent(TITLE) +
+      "&dates=" + stamp(PARTY_START) + "/" + stamp(PARTY_END) +
+      "&details=" + encodeURIComponent(DESC + "\n\n" + location.href) +
+      "&location=" + encodeURIComponent(LOCATION);
+
+    document.getElementById("ics").addEventListener("click", () => {
+      const esc = s => s.replace(/[\\,;]/g, m => "\\" + m).replace(/\n/g, "\\n");
+      const ics = [
+        "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Chevy Going Away//EN", "BEGIN:VEVENT",
+        "UID:chevy-going-away-20261107@party",
+        "DTSTAMP:" + stamp(new Date()),
+        "DTSTART:" + stamp(PARTY_START),
+        "DTEND:" + stamp(PARTY_END),
+        "SUMMARY:" + esc(TITLE),
+        "LOCATION:" + esc(LOCATION),
+        "DESCRIPTION:" + esc(DESC),
+        "END:VEVENT", "END:VCALENDAR"
+      ].join("\r\n");
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
+      a.download = "chevy-going-away-party.ics";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+  </script>
+</body>
+</html>
