@@ -79,6 +79,22 @@
       font-size: .8rem; color: var(--pine-deep); background: var(--ball);
       padding: 6px 14px; border-radius: 999px; box-shadow: 0 4px 0 var(--ball-dark);
     }
+    .portrait {
+      position: relative; width: clamp(160px, 38vw, 230px); aspect-ratio: 1; margin: 26px auto 0;
+      animation: float 4s ease-in-out infinite;
+    }
+    .portrait img {
+      width: 100%; height: 100%; object-fit: cover; object-position: 45% 50%; border-radius: 50%; display: block;
+      border: 6px solid var(--ball);
+      box-shadow: 0 0 0 6px var(--ember), 0 16px 34px rgba(0,0,0,.5);
+    }
+    .portrait .mvp {
+      position: absolute; right: -10px; bottom: 8px; transform: rotate(-10deg);
+      font-family: "Bungee", Impact, sans-serif; font-size: .95rem; color: #fff;
+      background: var(--maple); padding: 6px 12px; border-radius: 10px;
+      box-shadow: 0 4px 0 #7a2a10;
+    }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
     h1 {
       font-family: "Bungee", Impact, sans-serif; font-weight: 400;
       font-size: clamp(2.8rem, 11vw, 7rem); line-height: .95; margin: 22px 0 6px;
@@ -266,6 +282,10 @@
     <header class="hero">
       <div class="hero-inner">
         <span class="kicker">🏓 One last rally 🏓</span>
+        <div class="portrait">
+          <img src="chevy.jpg" alt="Chevy (Tim Ford) smiling" width="600" height="600" />
+          <span class="mvp">MVP 🏓</span>
+        </div>
         <h1>Farewell,<br /><span class="chevy">Chevy!</span></h1>
         <div class="script">Tim Ford's Going Away Party</div>
         <p class="sub">From sunny summer games to crisp fall dinks, Chevy has been a great part of our crew. Now he's off to a new job, so let's send him off right!</p>
