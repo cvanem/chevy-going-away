@@ -175,16 +175,9 @@
     .card.highlight { background: var(--ball); }
     .card.ember { background: #ffe4cf; }
 
-    .directions {
-      margin-top: 28px; background: var(--pine); color: var(--cream); border-radius: 22px;
-      padding: 28px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center;
-    }
-    .steps { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-weight: 800; }
-    .step { background: rgba(255,247,232,.1); border: 2px dashed rgba(255,247,232,.35); border-radius: 12px; padding: 10px 14px; }
-    .step.final { background: var(--court); border: 2px solid var(--ball); }
-    .arrow { color: var(--ball); font-size: 1.3rem; }
-    .house { width: 120px; height: auto; }
-    @media (max-width: 640px) { .directions { grid-template-columns: 1fr; text-align: center; } .house { margin: 0 auto; } .steps { justify-content: center; } }
+    .find { margin: 12px 0 10px; padding: 12px 14px; border-radius: 12px; background: #eef6e6; border: 2px dashed var(--court); }
+    .find-label { font-size: .74rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--court); margin-bottom: 4px; }
+    .find p { margin: 4px 0; }
 
     /* happy feet */
     .feet {
@@ -316,7 +309,11 @@
             <div class="label">Where</div>
             <h3>15 Forest Ave<br />Deadwood, SD</h3>
             <p>At <strong>"Rosie"</strong>, hosted by <strong>Chris &amp; Victoria</strong>.</p>
-            <p>🚗 <strong>Parking:</strong> on the street at <strong>65 Centennial</strong>, right across the road.</p>
+            <div class="find">
+              <div class="find-label">How to find us</div>
+              <p>🚗 <strong>Park on the street at 65 Centennial.</strong></p>
+              <p>🏡 Cross the road and walk down the wooden stairs to the green metal-roofed house: <em>Rosie</em>.</p>
+            </div>
             <p><a class="inline" href="https://www.google.com/maps/search/?api=1&query=65+Centennial+Deadwood+SD+57732" target="_blank" rel="noopener">Parking in Maps →</a><br />
             <a class="inline" href="https://www.google.com/maps/search/?api=1&query=15+Forest+Ave+Deadwood+SD+57732" target="_blank" rel="noopener">Party house in Maps →</a></p>
           </div>
@@ -347,31 +344,6 @@
             <div class="label">Dress Code</div>
             <h3>Happy Feet Required</h3>
             <p>Comfy shoes, warm layers, and a willingness to bust a move when Chevy starts dancing.</p>
-          </div>
-        </div>
-
-        <div class="directions reveal">
-          <svg class="house" viewBox="0 0 120 100" role="img" aria-label="Green metal-roofed house">
-            <rect x="18" y="46" width="84" height="50" rx="3" fill="#fff7e8" />
-            <polygon points="8,50 60,10 112,50" fill="#3f8f5a" />
-            <g stroke="#2f6b4f" stroke-width="2">
-              <line x1="24" y1="44" x2="60" y2="16" /><line x1="36" y1="46" x2="60" y2="27" />
-              <line x1="96" y1="44" x2="60" y2="16" /><line x1="84" y1="46" x2="60" y2="27" />
-            </g>
-            <rect x="50" y="64" width="20" height="32" rx="2" fill="#c8401f" />
-            <rect x="26" y="58" width="16" height="14" fill="#f5b82e" />
-            <rect x="78" y="58" width="16" height="14" fill="#f5b82e" />
-            <text x="60" y="56" text-anchor="middle" font-family="Pacifico, cursive" font-size="9" fill="#1f3b2d">Rosie</text>
-          </svg>
-          <div>
-            <div class="label" style="color:var(--ball);font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.74rem;margin-bottom:10px;">How to find us</div>
-            <div class="steps">
-              <span class="step">🚗 Park on the street at 65 Centennial</span>
-              <span class="arrow">➜</span>
-              <span class="step">🪜 Walk down the wooden stairs</span>
-              <span class="arrow">➜</span>
-              <span class="step final">🏡 Across the road: green metal-roofed house, <em>Rosie</em> (15 Forest Ave)</span>
-            </div>
           </div>
         </div>
 
@@ -513,7 +485,7 @@
     // ---- calendar ----
     const TITLE = "Chevy's Going Away Party 🏓";
     const LOCATION = "15 Forest Ave, Deadwood, SD 57732";
-    const DESC = "One last rally for Chevy (Tim Ford)! Park on the street at 65 Centennial, then walk down the wooden stairs to the green metal-roofed house across the road: Rosie (15 Forest Ave). Inside & outside by the fire pit, weather permitting. Gumbo provided. Bring a dish, snack, or dessert. BYOB. RSVP via TeamReach or text.";
+    const DESC = "One last rally for Chevy (Tim Ford)! Park on the street at 65 Centennial, then cross the road and walk down the wooden stairs to the green metal-roofed house: Rosie (15 Forest Ave). Inside & outside by the fire pit, weather permitting. Gumbo provided. Bring a dish, snack, or dessert. BYOB. RSVP via TeamReach or text.";
     const stamp = d => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
 
     document.getElementById("gcal").href =
